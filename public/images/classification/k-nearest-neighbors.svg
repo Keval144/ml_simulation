@@ -1,0 +1,30 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" rx="32" fill="#F8FAFC"/>
+  <rect x="120" y="90" width="780" height="480" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="4"/>
+  <line x1="190" y1="520" x2="820" y2="520" stroke="#94A3B8" stroke-width="4"/>
+  <line x1="190" y1="520" x2="190" y2="150" stroke="#94A3B8" stroke-width="4"/>
+  <text x="505" y="608" text-anchor="middle" fill="#334155" font-size="24" font-family="Arial, sans-serif">Feature 1</text>
+  <text x="78" y="340" text-anchor="middle" fill="#334155" font-size="24" font-family="Arial, sans-serif" transform="rotate(-90 78 340)">Feature 2</text>
+  <circle cx="305" cy="290" r="22" fill="#60A5FA"/>
+  <circle cx="350" cy="250" r="22" fill="#60A5FA"/>
+  <circle cx="405" cy="315" r="22" fill="#60A5FA"/>
+  <circle cx="660" cy="400" r="22" fill="#FB7185"/>
+  <circle cx="720" cy="360" r="22" fill="#FB7185"/>
+  <circle cx="760" cy="430" r="22" fill="#FB7185"/>
+  <circle cx="530" cy="330" r="28" fill="#F8FAFC" stroke="#0F172A" stroke-width="6"/>
+  <circle cx="530" cy="330" r="120" stroke="#38BDF8" stroke-width="4" stroke-dasharray="12 12"/>
+  <line x1="530" y1="330" x2="405" y2="315" stroke="#38BDF8" stroke-width="4" stroke-dasharray="10 10"/>
+  <line x1="530" y1="330" x2="660" y2="400" stroke="#38BDF8" stroke-width="4" stroke-dasharray="10 10"/>
+  <line x1="530" y1="330" x2="350" y2="250" stroke="#38BDF8" stroke-width="4" stroke-dasharray="10 10"/>
+  <text x="956" y="190" fill="#0F172A" font-size="28" font-family="Arial, sans-serif" font-weight="700">KNN</text>
+  <rect x="940" y="230" width="200" height="74" rx="18" fill="#DBEAFE"/>
+  <circle cx="978" cy="267" r="14" fill="#60A5FA"/>
+  <text x="1035" y="275" fill="#1E3A8A" font-size="24" font-family="Arial, sans-serif">Class A</text>
+  <rect x="940" y="326" width="200" height="74" rx="18" fill="#FFE4E6"/>
+  <circle cx="978" cy="363" r="14" fill="#FB7185"/>
+  <text x="1035" y="371" fill="#9F1239" font-size="24" font-family="Arial, sans-serif">Class B</text>
+  <rect x="940" y="422" width="200" height="74" rx="18" fill="#E2E8F0"/>
+  <circle cx="978" cy="459" r="14" fill="#F8FAFC" stroke="#0F172A" stroke-width="4"/>
+  <text x="1048" y="467" fill="#0F172A" font-size="24" font-family="Arial, sans-serif">Query point</text>
+  <text x="600" y="70" text-anchor="middle" fill="#0F172A" font-size="34" font-family="Arial, sans-serif" font-weight="700">K-nearest neighbors votes using local similarity</text>
+</svg>

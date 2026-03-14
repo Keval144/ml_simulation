@@ -40,6 +40,30 @@ export const learningCards = [
     badge: "Classification",
   },
   {
+    title: "Decision Trees",
+    description:
+      "Flowchart-style classification with Gini impurity, entropy, and pruning.",
+    href: "/learn/decision-trees",
+    image: "/images/classification/decision-tree.svg",
+    badge: "Classification",
+  },
+  {
+    title: "K-Nearest Neighbors",
+    description:
+      "Local voting, distance metrics, and why feature scaling matters.",
+    href: "/learn/k-nearest-neighbors",
+    image: "/images/classification/k-nearest-neighbors.svg",
+    badge: "Classification",
+  },
+  {
+    title: "Naive Bayes",
+    description:
+      "Fast probabilistic classification for text, spam, and simple baselines.",
+    href: "/learn/naive-bayes",
+    image: "/images/classification/naive-bayes.svg",
+    badge: "Classification",
+  },
+  {
     title: "Kernel Methods",
     description:
       "How kernel tricks transform data into higher-dimensional spaces.",

@@ -111,6 +111,27 @@ export const articleMetadata: Record<
     image: "/images/classification/logistic-regression.png",
     author: "Keval Kansagra",
   },
+  "decision-trees": {
+    title: "Decision Trees Explained",
+    description:
+      "Learn how decision trees split data into pure branches using Gini impurity, entropy, pruning, and simple rules.",
+    image: "/images/classification/decision-tree.svg",
+    author: "Codex",
+  },
+  "k-nearest-neighbors": {
+    title: "K-Nearest Neighbors Guide",
+    description:
+      "Understand KNN classification with distance metrics, voting, scaling, and practical tips for choosing k.",
+    image: "/images/classification/k-nearest-neighbors.svg",
+    author: "Codex",
+  },
+  "naive-bayes": {
+    title: "Naive Bayes Classification",
+    description:
+      "Fast probabilistic classification with Bayes' theorem, smoothing, priors, and practical text examples.",
+    image: "/images/classification/naive-bayes.svg",
+    author: "Codex",
+  },
   "kernel-trick": {
     title: "Kernel Methods Explained",
     description:
@@ -133,6 +154,9 @@ export const articleSimulationMap: Record<string, string[]> = {
   "gradient-descent": ["gradient-descent"],
   "polynomial-regression": ["polynomial-regression"],
   "logistic-regression": ["logistic-regression", "logistic-function", "logistic-training"],
+  "decision-trees": [],
+  "k-nearest-neighbors": [],
+  "naive-bayes": [],
   svr: ["svr-visualizer", "svr-kernel-lift"],
   "kernel-trick": ["kernel-trick"],
   "least-squares": ["least-squares"],

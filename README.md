@@ -53,7 +53,7 @@ ML Simulations is an interactive educational platform designed to help users und
 | Category | Articles | Author |
 |----------|----------|--------|
 | **Regression** | Gradient Descent, Linear Regression, Polynomial Regression, Least Squares | Keval Kansagra, Het Bhuva |
-| **Classification** | Logistic Regression | Keval Kansagra |
+| **Classification** | Logistic Regression, Decision Trees, K-Nearest Neighbors, Naive Bayes | Keval Kansagra, Codex |
 | **Advanced** | Support Vector Regression, Kernel Methods | Het Bhuva |
 
 ## Tech Stack

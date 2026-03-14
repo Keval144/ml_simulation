@@ -1,0 +1,22 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" rx="32" fill="#FFFDF8"/>
+  <rect x="120" y="110" width="240" height="420" rx="28" fill="#FEF3C7" stroke="#F59E0B" stroke-width="4"/>
+  <text x="240" y="170" text-anchor="middle" fill="#92400E" font-size="34" font-family="Arial, sans-serif" font-weight="700">Prior</text>
+  <text x="240" y="230" text-anchor="middle" fill="#92400E" font-size="28" font-family="Arial, sans-serif">P(spam)=0.40</text>
+  <text x="240" y="274" text-anchor="middle" fill="#92400E" font-size="28" font-family="Arial, sans-serif">P(ham)=0.60</text>
+  <rect x="440" y="110" width="320" height="420" rx="28" fill="#E0F2FE" stroke="#0284C7" stroke-width="4"/>
+  <text x="600" y="170" text-anchor="middle" fill="#0C4A6E" font-size="34" font-family="Arial, sans-serif" font-weight="700">Evidence</text>
+  <rect x="500" y="220" width="200" height="72" rx="18" fill="#BAE6FD"/>
+  <text x="600" y="265" text-anchor="middle" fill="#0C4A6E" font-size="28" font-family="Arial, sans-serif">word = free</text>
+  <rect x="500" y="322" width="200" height="72" rx="18" fill="#BAE6FD"/>
+  <text x="600" y="367" text-anchor="middle" fill="#0C4A6E" font-size="28" font-family="Arial, sans-serif">word = win</text>
+  <rect x="840" y="110" width="240" height="420" rx="28" fill="#DCFCE7" stroke="#16A34A" stroke-width="4"/>
+  <text x="960" y="170" text-anchor="middle" fill="#166534" font-size="34" font-family="Arial, sans-serif" font-weight="700">Posterior</text>
+  <text x="960" y="248" text-anchor="middle" fill="#166534" font-size="30" font-family="Arial, sans-serif">P(spam | x)</text>
+  <text x="960" y="290" text-anchor="middle" fill="#166534" font-size="42" font-family="Arial, sans-serif" font-weight="700">99.8%</text>
+  <text x="960" y="372" text-anchor="middle" fill="#166534" font-size="30" font-family="Arial, sans-serif">P(ham | x)</text>
+  <text x="960" y="414" text-anchor="middle" fill="#166534" font-size="42" font-family="Arial, sans-serif" font-weight="700">0.2%</text>
+  <path d="M360 320H440" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+  <path d="M760 320H840" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/>
+  <text x="600" y="600" text-anchor="middle" fill="#475569" font-size="28" font-family="Arial, sans-serif">Naive Bayes combines prior belief with feature evidence</text>
+</svg>

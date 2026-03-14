@@ -79,6 +79,33 @@ const articles: Article[] = [
     category: "classification",
   },
   {
+    id: "decision-trees",
+    title: "Decision Trees",
+    description:
+      "Learn how trees split data with impurity measures, pruning, and flowchart-like rules",
+    image: "/images/classification/decision-tree.svg",
+    badge: "Classification",
+    category: "classification",
+  },
+  {
+    id: "k-nearest-neighbors",
+    title: "K-Nearest Neighbors",
+    description:
+      "Distance-based classification with local voting, feature scaling, and choosing the right k",
+    image: "/images/classification/k-nearest-neighbors.svg",
+    badge: "Classification",
+    category: "classification",
+  },
+  {
+    id: "naive-bayes",
+    title: "Naive Bayes",
+    description:
+      "Probability-driven classification with Bayes' theorem, priors, and smoothing",
+    image: "/images/classification/naive-bayes.svg",
+    badge: "Classification",
+    category: "classification",
+  },
+  {
     id: "kernel-trick",
     title: "Kernel Methods",
     description:

@@ -19,7 +19,7 @@ function AnimatedNumber({
 
 const stats = [
   { value: 10, suffix: "+", label: "Simulations" },
-  { value: 6, suffix: "+", label: "In-depth Articles" },
+  { value: 9, suffix: "+", label: "In-depth Articles" },
   { value: 100, suffix: "%", label: "Free & Open" },
 ];
 

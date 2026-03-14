@@ -1,0 +1,30 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" rx="32" fill="#F5F7FB"/>
+  <circle cx="600" cy="120" r="72" fill="#DCEAFE"/>
+  <circle cx="600" cy="120" r="70" stroke="#2563EB" stroke-width="4"/>
+  <text x="600" y="105" text-anchor="middle" fill="#1E3A8A" font-size="28" font-family="Arial, sans-serif" font-weight="700">Credit score</text>
+  <text x="600" y="142" text-anchor="middle" fill="#1E3A8A" font-size="26" font-family="Arial, sans-serif">≥ 650?</text>
+  <path d="M555 182L385 310" stroke="#1D4ED8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M645 182L815 310" stroke="#1D4ED8" stroke-width="6" stroke-linecap="round"/>
+  <text x="470" y="245" text-anchor="middle" fill="#1D4ED8" font-size="24" font-family="Arial, sans-serif" font-weight="700">No</text>
+  <text x="730" y="245" text-anchor="middle" fill="#1D4ED8" font-size="24" font-family="Arial, sans-serif" font-weight="700">Yes</text>
+  <circle cx="355" cy="335" r="66" fill="#FEE2E2"/>
+  <circle cx="355" cy="335" r="64" stroke="#DC2626" stroke-width="4"/>
+  <text x="355" y="324" text-anchor="middle" fill="#991B1B" font-size="26" font-family="Arial, sans-serif" font-weight="700">Debt ratio</text>
+  <text x="355" y="358" text-anchor="middle" fill="#991B1B" font-size="24" font-family="Arial, sans-serif">&lt; 0.35?</text>
+  <circle cx="845" cy="335" r="66" fill="#DCFCE7"/>
+  <circle cx="845" cy="335" r="64" stroke="#16A34A" stroke-width="4"/>
+  <text x="845" y="330" text-anchor="middle" fill="#166534" font-size="28" font-family="Arial, sans-serif" font-weight="700">Approve</text>
+  <text x="845" y="364" text-anchor="middle" fill="#166534" font-size="22" font-family="Arial, sans-serif">pure leaf</text>
+  <path d="M330 395L225 525" stroke="#DC2626" stroke-width="6" stroke-linecap="round"/>
+  <path d="M380 395L485 525" stroke="#DC2626" stroke-width="6" stroke-linecap="round"/>
+  <text x="265" y="458" text-anchor="middle" fill="#DC2626" font-size="22" font-family="Arial, sans-serif" font-weight="700">No</text>
+  <text x="440" y="458" text-anchor="middle" fill="#DC2626" font-size="22" font-family="Arial, sans-serif" font-weight="700">Yes</text>
+  <rect x="135" y="500" width="180" height="92" rx="20" fill="#FECACA" stroke="#DC2626" stroke-width="4"/>
+  <text x="225" y="544" text-anchor="middle" fill="#991B1B" font-size="30" font-family="Arial, sans-serif" font-weight="700">Reject</text>
+  <text x="225" y="575" text-anchor="middle" fill="#991B1B" font-size="20" font-family="Arial, sans-serif">high risk branch</text>
+  <rect x="395" y="500" width="180" height="92" rx="20" fill="#FEF3C7" stroke="#D97706" stroke-width="4"/>
+  <text x="485" y="544" text-anchor="middle" fill="#92400E" font-size="30" font-family="Arial, sans-serif" font-weight="700">Review</text>
+  <text x="485" y="575" text-anchor="middle" fill="#92400E" font-size="20" font-family="Arial, sans-serif">mixed leaf</text>
+  <text x="600" y="628" text-anchor="middle" fill="#475569" font-size="26" font-family="Arial, sans-serif">Decision tree classification = learned flowchart</text>
+</svg>
