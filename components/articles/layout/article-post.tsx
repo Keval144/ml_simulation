@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Children, cloneElement, isValidElement } from "react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { blurDataURL } from "@/lib/blur";
+import { ArticleImage } from "./article-image";
 import { ArticleActions } from "./article-actions";
 import { Breadcrumb } from "./article-breadcrumb";
 import { slugify } from "./use-active-section";
@@ -115,24 +114,13 @@ export function ArticlePost({
         <ArticleActions title={title} />
       </header>
 
-      {/* Optional Image */}
+      {/* Optional Image — click to expand, click outside / Escape to close */}
         {image && (
-          <figure className="relative my-10 aspect-video border-2 rounded-xl">
-            <Image
-              src={image.src}
-              alt={image.alt ?? title}
-              fill
-              // Article hero sits at top of the page — eager-load for LCP.
-              // Explicit `priority: false` opts back into lazy for edge cases.
-              priority={image.priority ?? true}
-              loading={image.priority === false ? "lazy" : undefined}
-              placeholder="blur"
-              blurDataURL={blurDataURL}
-              sizes="(max-width: 768px) 100vw, 800px"
-              quality={image.src.endsWith(".svg") ? undefined : 85}
-              className="object-cover rounded-xl"
-            />
-          </figure>
+          <ArticleImage
+            src={image.src}
+            alt={image.alt ?? title}
+            priority={image.priority ?? true}
+          />
         )}
 
           {children && (

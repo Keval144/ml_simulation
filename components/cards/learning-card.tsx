@@ -50,27 +50,34 @@ export function LearningCard({
         focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background
       "
     >
-      {/* Image */}
-      <div className="relative aspect-video group">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          priority={priority}
-          loading={priority ? undefined : "lazy"}
-          placeholder="blur"
-          blurDataURL={blurDataURL}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          // Quality is meaningless for vectors and trips
-          // next-image-unconfigured-qualities — only set for raster.
-          quality={image.endsWith(".svg") ? undefined : 80}
-          className="
-            object-cover
-            transition-transform duration-500 ease-out
-            group-hover:scale-[1.04]
-          "
-        />
-      </div>
+      {/* Image — links to destination */}
+      <Link
+        href={href}
+        scroll={true}
+        aria-label={title}
+        className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+      >
+        <div className="relative aspect-video overflow-hidden">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            priority={priority}
+            loading={priority ? undefined : "lazy"}
+            placeholder="blur"
+            blurDataURL={blurDataURL}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            // Quality is meaningless for vectors and trips
+            // next-image-unconfigured-qualities — only set for raster.
+            quality={image.endsWith(".svg") ? undefined : 80}
+            className="
+              object-cover
+              transition-transform duration-500 ease-out
+              group-hover/card:scale-[1.04]
+            "
+          />
+        </div>
+      </Link>
 
       {/* Content */}
       <CardHeader className="flex flex-col gap-4">
@@ -80,7 +87,15 @@ export function LearningCard({
               {badge}
             </Badge>
           )}
-          <CardTitle className="text-xl tracking-tight">{title}</CardTitle>
+          <CardTitle className="text-xl tracking-tight">
+            <Link
+              href={href}
+              scroll={true}
+              className="rounded-sm underline-offset-4 decoration-border hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              {title}
+            </Link>
+          </CardTitle>
           <CardDescription className="text-sm leading-relaxed">{description}</CardDescription>
         </div>
 
