@@ -11,6 +11,7 @@ export interface Article {
   description: string;
   image: string;
   badge: string;
+  readingTime?: number;
   category:
     | "beginner"
     | "regression"

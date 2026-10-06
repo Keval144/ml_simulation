@@ -13,6 +13,30 @@ export const siteConfig = {
     "Interactive machine learning simulations designed to help students understand concepts through hands-on experimentation.",
 };
 
+/** Fallback "last updated" (ISO) shown in every article footer until
+ * per-article dates land. Bumped when article chrome/content changes. */
+export const ARTICLE_LAST_UPDATED_ISO = "2026-10-06";
+
+/**
+ * Minutes per article at 200 wpm, measured with the same extractText logic
+ * as ArticlePost's header pill — cards reuse these so numbers never drift.
+ */
+export const articleReadingTime: Record<string, number> = {
+  "gradient-descent": 5,
+  "least-squares": 3,
+  "linear-regression": 4,
+  "polynomial-regression": 3,
+  "logistic-regression": 3,
+  "decision-trees": 4,
+  "k-nearest-neighbors": 3,
+  "naive-bayes": 3,
+  "kernel-trick": 4,
+  svr: 3,
+  "what-is-ml": 6,
+  "first-project": 6,
+  "good-vs-bad-models": 5,
+};
+
 export const simulationMetadata: Record<
   string,
   { title: string; description: string; image: string }

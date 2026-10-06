@@ -1,10 +1,36 @@
 import * as React from "react";
 import { Children, cloneElement, isValidElement } from "react";
+import { Clock, History } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ARTICLE_LAST_UPDATED_ISO } from "@/lib/metadata";
 import { ArticleImage } from "./article-image";
 import { ArticleActions } from "./article-actions";
 import { Breadcrumb } from "./article-breadcrumb";
 import { slugify } from "./use-active-section";
+
+const WORDS_PER_MINUTE = 200;
+
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+/** Formats "2026-10-06" → "October 6, 2026" without locale-dependent Date APIs. */
+function formatISODate(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  if (!y || !m || !d || m < 1 || m > 12) return iso;
+  return `${MONTHS[m - 1]} ${d}, ${y}`;
+}
 
 function extractText(node: React.ReactNode): string {
   if (typeof node === "string" || typeof node === "number")
@@ -54,6 +80,8 @@ type ArticlePostProps = {
   title: string;
   author: string;
   date?: string;
+  /** ISO date ("2026-10-06") shown as "Last updated" in the footer. */
+  updated?: string;
   description?: React.ReactNode;
   image?: {
     src: string;
@@ -71,6 +99,7 @@ export function ArticlePost({
   title,
   author,
   date,
+  updated = ARTICLE_LAST_UPDATED_ISO,
   description,
   image,
   children,
@@ -82,6 +111,13 @@ export function ArticlePost({
     () => assignHeadingIds(children, new Set<string>()),
     [children],
   );
+  // Reading time from prose (headings, paragraphs, callouts). Code passed
+  // via `code` props isn't plain children text, so this stays a read estimate.
+  const minutes = React.useMemo(() => {
+    const text = extractText([title, description, children]);
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    return Math.max(1, Math.ceil(words / WORDS_PER_MINUTE));
+  }, [title, description, children]);
   return (
     <article className={cn("mx-auto w-full max-w-none py-8 sm:py-12", className)}>
       {/* Header */}
@@ -110,6 +146,11 @@ export function ArticlePost({
             {description}
           </p>
         )}
+
+        <p className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium text-foreground">
+          <Clock size={14} aria-hidden="true" className="text-primary" />
+          <span>{minutes} min read</span>
+        </p>
 
         <ArticleActions title={title} />
       </header>
@@ -163,6 +204,15 @@ export function ArticlePost({
           {body}
         </div>
         </div>
+      )}
+
+      {updated && (
+        <footer className="mt-12 flex items-center gap-1.5 border-t border-border pt-6 text-sm text-muted-foreground">
+          <History size={14} aria-hidden="true" />
+          <span>
+            Last updated on <time dateTime={updated}>{formatISODate(updated)}</time>
+          </span>
+        </footer>
       )}
     </article>
   );

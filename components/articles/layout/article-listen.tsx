@@ -74,6 +74,7 @@ export function ArticleListen({ title, className }: ArticleListenProps) {
   const [cues, setCues] = useState<Cue[]>([]);
   const [ccOn, setCcOn] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const ccRootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -137,6 +138,26 @@ export function ArticleListen({ title, className }: ArticleListenProps) {
     }
   }, [expanded]);
 
+  // CC popover (same pattern as Share): close on outside click / Escape.
+  // Only the popover closes — playback keeps going.
+  useEffect(() => {
+    if (!ccOn) return;
+    const onPointer = (e: PointerEvent) => {
+      if (ccRootRef.current && !ccRootRef.current.contains(e.target as Node)) {
+        setCcOn(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setCcOn(false);
+    };
+    document.addEventListener("pointerdown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [ccOn]);
+
   if (!src) return null;
 
   const togglePlay = () => {
@@ -167,6 +188,15 @@ export function ArticleListen({ title, className }: ArticleListenProps) {
     if (audioRef.current) audioRef.current.playbackRate = SPEEDS[next];
   };
 
+  const seekTo = (sec: number) => {
+    const audio = audioRef.current;
+    if (!audio || !isFinite(audio.duration)) return;
+    audio.currentTime = Math.min(
+      Math.max(sec, 0),
+      Math.max(audio.duration - 0.1, 0),
+    );
+  };
+
   if (!expanded) {
     return (
       <button
@@ -194,17 +224,18 @@ export function ArticleListen({ title, className }: ArticleListenProps) {
   const pill =
     "flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
-  const activeCue =
-    ccOn && isPlaying
-      ? cues.find((c) => currentTime >= c.start && currentTime < c.end)
-      : undefined;
+  // Stays visible while paused (frozen at currentTime) so the popover
+  // text doesn't vanish on play/pause.
+  const activeCue = ccOn
+    ? cues.find((c) => currentTime >= c.start && currentTime < c.end)
+    : undefined;
 
   return (
-    <div className={cn("inline-flex max-w-full flex-col gap-1.5", className)}>
     <div
       className={cn(
-        "inline-flex h-9 items-center gap-0.5 rounded-full border border-border bg-card pr-1 pl-1 shadow-xs",
+        "inline-flex h-9 max-w-full items-center gap-0.5 rounded-full border border-border bg-card pr-1 pl-1 shadow-xs",
         failed && "border-destructive/50",
+        className,
       )}
       role="group"
       aria-label={`Audio player: ${title}`}
@@ -253,34 +284,80 @@ export function ArticleListen({ title, className }: ArticleListenProps) {
       >
         {SPEEDS[speedIndex]}x
       </button>
-      <button
-        type="button"
-        onClick={() => vttSrc && setCcOn((v) => !v)}
-        disabled={!vttSrc}
-        aria-pressed={ccOn}
-        aria-label={vttSrc ? "Toggle captions" : "No captions yet for this article"}
-        title={vttSrc ? "Toggle captions" : "Captions appear after audio is regenerated"}
-        className={cn(
-          "flex h-9 cursor-pointer items-center rounded-full px-2 text-xs font-bold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40",
-          ccOn
-            ? "bg-primary/15 text-primary"
-            : "text-muted-foreground hover:bg-accent hover:text-foreground",
-        )}
-      >
-        CC
-      </button>
+      {/* CC popover — absolute overlay like Share, zero layout impact. */}
+      <div ref={ccRootRef} className="relative">
+        <button
+          type="button"
+          onClick={() => vttSrc && setCcOn((v) => !v)}
+          disabled={!vttSrc}
+          aria-expanded={ccOn}
+          aria-haspopup="dialog"
+          aria-label={vttSrc ? "Toggle captions" : "No captions yet for this article"}
+          title={vttSrc ? "Toggle captions" : "Captions appear after audio is regenerated"}
+          className={cn(
+            "flex h-9 cursor-pointer items-center rounded-full px-2 text-xs font-bold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default disabled:opacity-40",
+            ccOn
+              ? "bg-primary/15 text-primary"
+              : "text-muted-foreground hover:bg-accent hover:text-foreground",
+          )}
+        >
+          CC
+        </button>
+        <div
+          role="dialog"
+          aria-label={`Captions: ${title}`}
+          className={cn(
+            "absolute top-full right-0 z-50 mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card/95 p-2 shadow-xl backdrop-blur transition-all duration-200",
+            ccOn
+              ? "visible scale-100 opacity-100"
+              : "invisible scale-90 opacity-0 pointer-events-none",
+          )}
+        >
+          {/* Screen-reader announcer — visually hidden so the current
+              caption isn't shown twice (once here, once in transcript). */}
+          <p aria-live="polite" className="sr-only">
+            {cues.length === 0
+              ? "Loading captions…"
+              : (activeCue?.text ?? "")}
+          </p>
+          {cues.length === 0 ? (
+            <p className="break-words rounded-xl bg-muted/60 px-3 py-2 text-xs leading-relaxed text-muted-foreground">
+              Loading captions…
+            </p>
+          ) : (
+            <div className="max-h-48 overflow-y-auto overscroll-contain rounded-xl">
+              {cues.map((cue, i) => {
+                const active =
+                  currentTime >= cue.start && currentTime < cue.end;
+                return (
+                  <button
+                    key={`${cue.start}-${i}`}
+                    type="button"
+                    tabIndex={ccOn ? 0 : -1}
+                    onClick={() => seekTo(cue.start)}
+                    aria-label={`Seek to ${formatTime(cue.start)}: ${cue.text}`}
+                    className={cn(
+                      "flex w-full cursor-pointer items-baseline gap-2 rounded-lg px-3 py-1.5 text-left text-xs leading-relaxed transition-colors",
+                      "hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      active
+                        ? "bg-primary/10 font-medium text-foreground"
+                        : "text-muted-foreground",
+                    )}
+                  >
+                    <span className="shrink-0 tabular-nums text-[10px] opacity-70">
+                      {formatTime(cue.start)}
+                    </span>
+                    <span className="break-words">{cue.text}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
       {failed && (
         <span className="px-2 text-xs text-destructive">Audio unavailable</span>
       )}
-    </div>
-    {activeCue && (
-      <p
-        aria-live="polite"
-        className="max-w-80 rounded-lg border border-border bg-muted/60 px-3 py-1.5 text-xs leading-relaxed text-foreground"
-      >
-        {activeCue.text}
-      </p>
-    )}
     </div>
   );
 }

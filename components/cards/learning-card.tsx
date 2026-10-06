@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Plus, ArrowRight } from "lucide-react";
+import { Plus, ArrowRight, Clock } from "lucide-react";
 
 import {
   Card,
@@ -19,6 +19,8 @@ interface LearningCardProps {
   image: string;
   badge?: string;
   variant?: "read" | "simulation";
+  /** Minutes to read — pill shows next to badge when provided. */
+  readingTime?: number;
   /** Set for the first above-fold card so it preloads (LCP). */
   priority?: boolean;
 }
@@ -30,6 +32,7 @@ export function LearningCard({
   image,
   badge,
   variant = "read",
+  readingTime,
   priority = false,
 }: LearningCardProps) {
   const isSimulation = variant === "simulation";
@@ -82,11 +85,19 @@ export function LearningCard({
       {/* Content */}
       <CardHeader className="flex flex-col gap-4">
         <div className="space-y-2.5">
-          {badge && (
-            <Badge className="w-fit border-primary/20 bg-primary/10 font-semibold text-primary">
-              {badge}
-            </Badge>
-          )}
+          <div className="flex flex-wrap items-center gap-2">
+            {badge && (
+              <Badge className="w-fit border-primary/20 bg-primary/10 font-semibold text-primary">
+                {badge}
+              </Badge>
+            )}
+            {readingTime !== undefined && (
+              <span className="inline-flex w-fit items-center gap-1 rounded-full border border-border bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-foreground">
+                <Clock size={12} aria-hidden="true" className="text-primary" />
+                {readingTime} min read
+              </span>
+            )}
+          </div>
           <CardTitle className="text-xl tracking-tight">
             <Link
               href={href}

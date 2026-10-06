@@ -22,6 +22,7 @@ export interface BrowserItem {
   image: string;
   badge: string;
   category: string;
+  readingTime?: number;
 }
 
 export interface BrowserCategory {
@@ -165,6 +166,7 @@ export function ContentBrowser({
                       image={item.image}
                       badge={item.badge}
                       variant={cardVariant}
+                      readingTime={item.readingTime}
                       priority={eagerCategory !== undefined && value === eagerCategory && i === 0}
                     />
                   );

@@ -6,6 +6,7 @@ import {
   ArticleBrowser,
   type Article,
 } from "@/components/listings/article-browser";
+import { articleReadingTime } from "@/lib/metadata";
 
 export const metadata: Metadata = {
   title: "ML Articles",
@@ -23,6 +24,7 @@ const articles: Article[] = [
     image: "/article/beginner/what-is-ml-hero.webp",
     badge: "Beginner",
     category: "beginner",
+    readingTime: articleReadingTime["what-is-ml"],
   },
   {
     id: "first-project",
@@ -32,6 +34,7 @@ const articles: Article[] = [
     image: "/article/beginner/first-project-hero.webp",
     badge: "Beginner",
     category: "beginner",
+    readingTime: articleReadingTime["first-project"],
   },
   {
     id: "good-vs-bad-models",
@@ -41,6 +44,7 @@ const articles: Article[] = [
     image: "/article/beginner/good-vs-bad-hero.webp",
     badge: "Beginner",
     category: "beginner",
+    readingTime: articleReadingTime["good-vs-bad-models"],
   },
   {
     id: "gradient-descent",
@@ -50,6 +54,7 @@ const articles: Article[] = [
     image: "/images/regression/gradient-descent.webp",
     badge: "Regression",
     category: "regression",
+    readingTime: articleReadingTime["gradient-descent"],
   },
   {
     id: "linear-regression",
@@ -59,6 +64,7 @@ const articles: Article[] = [
     image: "/images/regression/linear-regression.webp",
     badge: "Regression",
     category: "regression",
+    readingTime: articleReadingTime["linear-regression"],
   },
   {
     id: "least-squares",
@@ -68,6 +74,7 @@ const articles: Article[] = [
     image: "/images/regression/least-squares.webp",
     badge: "Regression",
     category: "regression",
+    readingTime: articleReadingTime["least-squares"],
   },
   {
     id: "polynomial-regression",
@@ -77,6 +84,7 @@ const articles: Article[] = [
     image: "/images/regression/polynomial-regression.webp",
     badge: "Regression",
     category: "regression",
+    readingTime: articleReadingTime["polynomial-regression"],
   },
   {
     id: "svr",
@@ -86,6 +94,7 @@ const articles: Article[] = [
     image: "/images/regression/svr.webp",
     badge: "Regression",
     category: "regression",
+    readingTime: articleReadingTime["svr"],
   },
   {
     id: "logistic-regression",
@@ -95,6 +104,7 @@ const articles: Article[] = [
     image: "/images/classification/logistic-regression.webp",
     badge: "Classification",
     category: "classification",
+    readingTime: articleReadingTime["logistic-regression"],
   },
   {
     id: "decision-trees",
@@ -104,6 +114,7 @@ const articles: Article[] = [
     image: "/images/classification/decision-tree-v2.webp",
     badge: "Classification",
     category: "classification",
+    readingTime: articleReadingTime["decision-trees"],
   },
   {
     id: "k-nearest-neighbors",
@@ -113,6 +124,7 @@ const articles: Article[] = [
     image: "/images/classification/k-nearest-neighbors-v2.webp",
     badge: "Classification",
     category: "classification",
+    readingTime: articleReadingTime["k-nearest-neighbors"],
   },
   {
     id: "naive-bayes",
@@ -122,6 +134,7 @@ const articles: Article[] = [
     image: "/images/classification/naive-bayes-v2.webp",
     badge: "Classification",
     category: "classification",
+    readingTime: articleReadingTime["naive-bayes"],
   },
   {
     id: "kernel-trick",
@@ -131,6 +144,7 @@ const articles: Article[] = [
     image: "/images/other/kernel-trick.webp",
     badge: "Advanced",
     category: "other",
+    readingTime: articleReadingTime["kernel-trick"],
   },
 ];
 
